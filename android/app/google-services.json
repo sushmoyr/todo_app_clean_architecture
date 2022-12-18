@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "689202071103",
+    "project_id": "xo-todo",
+    "storage_bucket": "xo-todo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:689202071103:android:dd0fbfd624892eda421a8a",
+        "android_client_info": {
+          "package_name": "com.sushmoy.todo_app_clean_architecture"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "689202071103-mf9scqedkp9dpg5hat37md0a6f315bkg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMMsgSJOKba3icyzw4Vo90Ge9slTD3OoE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "689202071103-mf9scqedkp9dpg5hat37md0a6f315bkg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
