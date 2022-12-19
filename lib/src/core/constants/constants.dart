@@ -21,3 +21,7 @@ const horizontalGap16 = SizedBox(width: 16);
 const verticalGap8 = SizedBox(height: 8);
 const verticalGap16 = SizedBox(height: 16);
 const verticalGap24 = SizedBox(height: 24);
+
+// Curves
+const emphasizedDecelerateCurve = Cubic(0.05, 0.7, 0.1, 1.0);
+const emphasizedAccelerateCurve = Cubic(0.3, 0.0, 0.8, 0.15);

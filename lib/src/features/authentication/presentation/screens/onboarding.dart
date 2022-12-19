@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:todo_app_clean_architecture/generated/assets.dart';
 import 'package:todo_app_clean_architecture/src/core/common_widgets/animated_slogan.dart';
 import 'package:todo_app_clean_architecture/src/core/constants/constants.dart';
+import 'package:todo_app_clean_architecture/src/features/authentication/presentation/screens/login_dialog.dart';
+import 'package:todo_app_clean_architecture/src/features/authentication/presentation/screens/register_dialog.dart';
 
 class Onboarding extends StatelessWidget {
   const Onboarding({Key? key}) : super(key: key);
@@ -52,10 +54,12 @@ class Onboarding extends StatelessWidget {
               child: FractionallySizedBox(
                 widthFactor: 0.6,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    LoginDialog.show(context);
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Theme.of(context).colorScheme.primary,
-                    onPrimary: Theme.of(context).colorScheme.onPrimary,
+                    foregroundColor: Theme.of(context).colorScheme.onPrimary,
                   ),
                   child: Text('Login'),
                 ),
@@ -68,7 +72,9 @@ class Onboarding extends StatelessWidget {
                 widthFactor: 0.6,
                 alignment: Alignment.center,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    RegisterDialog.show(context);
+                  },
                   child: Text('Register'),
                 ),
               ),

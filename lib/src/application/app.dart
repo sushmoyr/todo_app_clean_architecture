@@ -16,7 +16,7 @@ class TodoApp extends StatelessWidget {
         colorSchemeSeed: Colors.blue,
       ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      home: Onboarding(),
+      home: const Onboarding(),
     );
   }
 }
