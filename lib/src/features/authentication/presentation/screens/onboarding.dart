@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:todo_app_clean_architecture/generated/assets.dart';
 import 'package:todo_app_clean_architecture/src/core/common_widgets/animated_slogan.dart';
 import 'package:todo_app_clean_architecture/src/core/constants/constants.dart';
 
@@ -11,7 +12,9 @@ class Onboarding extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: MediaQuery.of(context)
+            .viewPadding
+            .copyWith(left: 24, right: 24, bottom: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -24,12 +27,24 @@ class Onboarding extends StatelessWidget {
             ),
             verticalGap8,
             Expanded(
-              child: AnimatedSlogan(
-                slogans: const [
-                  'One tool for productivity',
-                  'One tool for creativity'
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: AnimatedSlogan(
+                      slogans: const [
+                        'One tool for productivity',
+                        'One tool for creativity'
+                      ],
+                      style: Theme.of(context).textTheme.displayLarge,
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Image.asset(Assets.assetsOnboard),
+                  ),
                 ],
-                style: Theme.of(context).textTheme.displayLarge,
               ),
             ),
             Align(
