@@ -1,0 +1,169 @@
+@startuml
+set namespaceSeparator ::
+
+class "todo_app_clean_architecture::firebase_options.dart::DefaultFirebaseOptions" {
+  {static} +FirebaseOptions web
+  {static} +FirebaseOptions android
+  {static} +FirebaseOptions ios
+  {static} +FirebaseOptions currentPlatform
+}
+
+"todo_app_clean_architecture::firebase_options.dart::DefaultFirebaseOptions" o-- "firebase_core_platform_interface::firebase_core_platform_interface.dart::FirebaseOptions"
+
+class "todo_app_clean_architecture::generated::assets.dart::Assets" {
+  {static} +String assetsOnboard
+}
+
+class "todo_app_clean_architecture::src::application::app.dart::TodoApp" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "todo_app_clean_architecture::src::application::app.dart::TodoApp"
+
+class "todo_app_clean_architecture::src::core::common_widgets::animated_slogan.dart::AnimatedSlogan" {
+  +List<String> slogans
+  +TextStyle? style
+  +State<AnimatedSlogan> createState()
+}
+
+"todo_app_clean_architecture::src::core::common_widgets::animated_slogan.dart::AnimatedSlogan" o-- "flutter::src::painting::text_style.dart::TextStyle"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "todo_app_clean_architecture::src::core::common_widgets::animated_slogan.dart::AnimatedSlogan"
+
+class "todo_app_clean_architecture::src::core::common_widgets::animated_slogan.dart::_AnimatedSloganState" {
+  +int currentIndex
+  +Timer timer
+  +void initState()
+  +Widget build()
+}
+
+"todo_app_clean_architecture::src::core::common_widgets::animated_slogan.dart::_AnimatedSloganState" o-- "dart::async::Timer"
+"flutter::src::widgets::framework.dart::State" <|-- "todo_app_clean_architecture::src::core::common_widgets::animated_slogan.dart::_AnimatedSloganState"
+
+class "todo_app_clean_architecture::src::core::common_widgets::animated_text.dart::AnimatedText" {
+  +Animation<double>? animation
+  +String text
+  +Duration duration
+  +TextStyle? style
+  +Curve? curve
+  +State<AnimatedText> createState()
+}
+
+"todo_app_clean_architecture::src::core::common_widgets::animated_text.dart::AnimatedText" o-- "flutter::src::animation::animation.dart::Animation<double>"
+"todo_app_clean_architecture::src::core::common_widgets::animated_text.dart::AnimatedText" o-- "flutter::src::painting::text_style.dart::TextStyle"
+"todo_app_clean_architecture::src::core::common_widgets::animated_text.dart::AnimatedText" o-- "flutter::src::animation::curves.dart::Curve"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "todo_app_clean_architecture::src::core::common_widgets::animated_text.dart::AnimatedText"
+
+class "todo_app_clean_architecture::src::core::common_widgets::animated_text.dart::_AnimatedTextState" {
+  +AnimationController controller
+  +void initState()
+  +void runAnimation()
+  +void didUpdateWidget()
+  +Widget build()
+}
+
+"todo_app_clean_architecture::src::core::common_widgets::animated_text.dart::_AnimatedTextState" o-- "flutter::src::animation::animation_controller.dart::AnimationController"
+"flutter::src::widgets::framework.dart::State" <|-- "todo_app_clean_architecture::src::core::common_widgets::animated_text.dart::_AnimatedTextState"
+"flutter::src::widgets::ticker_provider.dart::SingleTickerProviderStateMixin" <|-- "todo_app_clean_architecture::src::core::common_widgets::animated_text.dart::_AnimatedTextState"
+
+class "todo_app_clean_architecture::src::core::common_widgets::switcher_tab.dart::SwitcherTabData" {
+  +String label
+  +Widget child
+}
+
+"todo_app_clean_architecture::src::core::common_widgets::switcher_tab.dart::SwitcherTabData" o-- "flutter::src::widgets::framework.dart::Widget"
+
+class "todo_app_clean_architecture::src::core::common_widgets::switcher_tab.dart::SwitcherTab" {
+  +List<SwitcherTabData> tabData
+  +void Function(int)? onSelectionChanged
+  +State<SwitcherTab> createState()
+}
+
+"todo_app_clean_architecture::src::core::common_widgets::switcher_tab.dart::SwitcherTab" o-- "flutter::src::foundation::basic_types.dart::void Function(int)"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "todo_app_clean_architecture::src::core::common_widgets::switcher_tab.dart::SwitcherTab"
+
+class "todo_app_clean_architecture::src::core::common_widgets::switcher_tab.dart::_SwitcherTabState" {
+  +int selectedIndex
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "todo_app_clean_architecture::src::core::common_widgets::switcher_tab.dart::_SwitcherTabState"
+
+abstract class "todo_app_clean_architecture::src::core::helpers::resource.dart::Resource" {
+  +T? data
+  +String? message
+}
+
+class "todo_app_clean_architecture::src::core::helpers::resource.dart::Success" {
+}
+
+"todo_app_clean_architecture::src::core::helpers::resource.dart::Resource" <|-- "todo_app_clean_architecture::src::core::helpers::resource.dart::Success"
+
+class "todo_app_clean_architecture::src::core::helpers::resource.dart::Error" {
+}
+
+"todo_app_clean_architecture::src::core::helpers::resource.dart::Resource" <|-- "todo_app_clean_architecture::src::core::helpers::resource.dart::Error"
+
+class "todo_app_clean_architecture::src::core::helpers::resource.dart::Loading" {
+}
+
+"todo_app_clean_architecture::src::core::helpers::resource.dart::Resource" <|-- "todo_app_clean_architecture::src::core::helpers::resource.dart::Loading"
+
+class "todo_app_clean_architecture::src::features::authentication::data::repositories::auth_repository_impl.dart::AuthRepositoryImpl" {
+  +Future<void> loginWithEmailPassword()
+  +Future<void> loginWithPhone()
+  +Future<void> registerWithEmailPassword()
+  +Future<void> registerWithPhone()
+}
+
+"todo_app_clean_architecture::src::features::authentication::domain::repositories::auth_repository.dart::AuthRepository" <|-- "todo_app_clean_architecture::src::features::authentication::data::repositories::auth_repository_impl.dart::AuthRepositoryImpl"
+
+abstract class "todo_app_clean_architecture::src::features::authentication::domain::repositories::auth_repository.dart::AuthRepository" {
+  +Future<void> loginWithEmailPassword()
+  +Future<void> registerWithEmailPassword()
+  +Future<void> loginWithPhone()
+  +Future<void> registerWithPhone()
+}
+
+abstract class "todo_app_clean_architecture::src::features::authentication::domain::usecases::auth_usecase.dart::AuthUseCase" {
+  +void execute()
+}
+
+class "todo_app_clean_architecture::src::features::authentication::domain::usecases::auth_usecase.dart::EmailUseCase" {
+  +dynamic call()
+  +void execute()
+}
+
+"todo_app_clean_architecture::src::features::authentication::domain::usecases::auth_usecase.dart::AuthUseCase" <|-- "todo_app_clean_architecture::src::features::authentication::domain::usecases::auth_usecase.dart::EmailUseCase"
+
+class "todo_app_clean_architecture::src::features::authentication::domain::usecases::email_password_usecase.dart::ValidPasswordUseCase" {
+  +bool call()
+}
+
+"todo_app_clean_architecture::src::features::authentication::presentation::viewmodels::auth_viewmodel.dart::UseCase" <|-- "todo_app_clean_architecture::src::features::authentication::domain::usecases::email_password_usecase.dart::ValidPasswordUseCase"
+
+class "todo_app_clean_architecture::src::features::authentication::presentation::screens::login_dialog.dart::LoginDialog" {
+  {static} +void show()
+  +Widget build()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "todo_app_clean_architecture::src::features::authentication::presentation::screens::login_dialog.dart::LoginDialog"
+
+class "todo_app_clean_architecture::src::features::authentication::presentation::screens::onboarding.dart::Onboarding" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "todo_app_clean_architecture::src::features::authentication::presentation::screens::onboarding.dart::Onboarding"
+
+class "todo_app_clean_architecture::src::features::authentication::presentation::screens::register_dialog.dart::RegisterDialog" {
+  {static} +void show()
+  +Widget build()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "todo_app_clean_architecture::src::features::authentication::presentation::screens::register_dialog.dart::RegisterDialog"
+
+abstract class "todo_app_clean_architecture::src::features::authentication::presentation::viewmodels::auth_viewmodel.dart::UseCase" {
+  +Output call()
+}
+
+
+@enduml

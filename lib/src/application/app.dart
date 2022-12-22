@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app_clean_architecture/src/features/authentication/presentation/screens/register_dialog.dart';
 
 import '../features/authentication/presentation/screens/onboarding.dart';
 
