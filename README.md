@@ -15,15 +15,45 @@ each features contains data, domain and presentation layers.
 - lib
   - src
     - application
+      - design_system
+      - router
       - app.dart
     - core
-      - components
       - constants
         - constants.dart
-      - exceptions
-        - app_exception.dart
-      - extensions
-      - themes
-        - app_theme.dart
+      - di
+      - errors
+        - errors.dart
+      - helpers
+      - repositories
+      - services
+      - usecases
     - features
+      - authentication
+        - data
+          - datasources
+          - models
+          - repositories
+        - domain
+          - entities
+          - repositories
+          - usecases
+        - presentation
+          - screens
+          - viewmodels
+          - widgets
+      - todo
+        - data
+          - datasources
+          - models
+          - repositories
+      - domain
+        - entities
+        - repositories
+        - usecases
+      - presentation
+        - screens
+        - viewmodels
+        - widgets
+    - i10n
   - main.dart
