@@ -14,8 +14,10 @@ each features contains data, domain and presentation layers.
 
 ```bash
 └───lib
-    ├───generated
-    │   └───intl
+    ├───i10n
+    ├   ├───generated
+    ├   ├───locales
+    │   └───providers
     └───src
         ├───application
         ├───core
