@@ -20,6 +20,8 @@ each features contains data, domain and presentation layers.
     │   └───providers
     └───src
         ├───application
+        ├   ├───design_system
+        ├   ├   ├───design_system
         ├───core
         │   ├───common_widgets
         │   ├───constants
